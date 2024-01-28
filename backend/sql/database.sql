@@ -1,5 +1,3 @@
-CREATE DATABASE codeBarchaDb;
-
 CREATE TABLE app_user(
     userId SERIAL PRIMARY KEY,
     userName VARCHAR(50),
