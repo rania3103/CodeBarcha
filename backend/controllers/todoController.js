@@ -23,8 +23,6 @@ const getTasks = (req, res) => {
       console.error(error);
     });
 };
-// get important tasks
-
 // update task
 const updateTask = async (req, res) => {
   const { description, dueDate } = req.body;
@@ -67,4 +65,18 @@ const deleteTask = (req, res) => {
       console.error(error);
     });
 };
-module.exports = { createTask, getTasks, updateTask, deleteTask };
+// get important tasks
+const getImportantTasks = (req, res) => {
+  const thisWeekStartDate = new Date();
+  const thisWeekEndDate = new Date();
+  thisWeekEndDate.setDate(thisWeekEndDate.getDate() + 7);
+  pool.query('select description, dueDate from task where dueDate between $1 and $2', [thisWeekStartDate, thisWeekEndDate])
+    .then(result => {
+      res.status(200).json(result.rows);
+    })
+    .catch(error => {
+      res.status(400).json({ error: 'Failed to get tasks' });
+      console.error(error);
+    });
+};
+module.exports = { createTask, getTasks, updateTask, deleteTask, getImportantTasks };
