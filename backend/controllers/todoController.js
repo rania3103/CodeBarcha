@@ -1,9 +1,9 @@
-const { pool } = require('../db/db');
-// craete task
+const db = require('../db/db');
+// create task
 const createTask = (req, res) => {
   const { description, dueDate } = req.body;
   const userId = 1; // i have to update it after authentication
-  pool.query('insert into task (description, dueDate, userId) values($1, $2, $3) returning *', [description, dueDate, userId])
+  db.query('insert into task (description, dueDate, userId) values($1, $2, $3) returning *', [description, dueDate, userId])
     .then(result => {
       res.status(201).json(result.rows[0]);
     })
@@ -14,7 +14,7 @@ const createTask = (req, res) => {
 };
 // get all tasks
 const getTasks = (req, res) => {
-  pool.query('select description, dueDate from task')
+  db.query('select description, dueDate from task')
     .then(result => {
       res.status(200).json(result.rows);
     })
@@ -30,7 +30,7 @@ const updateTask = async (req, res) => {
   let updatedTask = null;
   try {
     if (description) {
-      const result = await pool.query('update task set description = $1 where taskId = $2  returning *', [description, id]);
+      const result = await db.query('update task set description = $1 where taskId = $2  returning *', [description, id]);
       if (result.rowCount > 0) {
         updatedTask = result.rows[0];
       } else {
@@ -39,7 +39,7 @@ const updateTask = async (req, res) => {
       }
     }
     if (dueDate) {
-      const result = await pool.query('update task set dueDate = $1 where taskId = $2  returning *', [dueDate, id]);
+      const result = await db.query('update task set dueDate = $1 where taskId = $2  returning *', [dueDate, id]);
       if (result.rowCount > 0) {
         updatedTask = result.rows[0];
       } else {
@@ -58,7 +58,7 @@ const updateTask = async (req, res) => {
 // delete task
 const deleteTask = (req, res) => {
   const id = req.params.id;
-  pool.query('delete from task where taskId = $1', [id])
+  db.query('delete from task where taskId = $1', [id])
     .then(res.status(200).json({ message: 'task deleted sucessefully' }))
     .catch(error => {
       res.status(400).json({ error: 'Failed to delete task' });
@@ -70,7 +70,7 @@ const getImportantTasks = (req, res) => {
   const thisWeekStartDate = new Date();
   const thisWeekEndDate = new Date();
   thisWeekEndDate.setDate(thisWeekEndDate.getDate() + 7);
-  pool.query('select description, dueDate from task where dueDate between $1 and $2', [thisWeekStartDate, thisWeekEndDate])
+  db.query('select description, dueDate from task where dueDate between $1 and $2', [thisWeekStartDate, thisWeekEndDate])
     .then(result => {
       res.status(200).json(result.rows);
     })
