@@ -1,8 +1,9 @@
 const db = require('../db/db');
+
 // create task
 const createTask = (req, res) => {
   const { description, dueDate } = req.body;
-  const userId = 1; // i have to update it after authentication
+  const userId = req.user.id;
   db.query('insert into task (description, dueDate, userId) values($1, $2, $3) returning *', [description, dueDate, userId])
     .then(result => {
       res.status(201).json(result.rows[0]);
