@@ -2,11 +2,12 @@ CREATE TABLE app_user(
     userId SERIAL PRIMARY KEY,
     email VARCHAR(60),
     password VARCHAR(70),
-    githubUserName VARCHAR(60) UNIQUE
+    githubusername VARCHAR(60) UNIQUE,
+    githubaccesstoken varchar(100)
 );
 CREATE TABLE task(
-    taskId SERIAL PRIMARY KEY,
+    taskid SERIAL PRIMARY KEY,
     description varchar(120),
-    dueDate DATE,
-    userId INTEGER REFERENCES app_user(userId)
+    duedate DATE,
+    userid INTEGER REFERENCES app_user(userId)
 );
