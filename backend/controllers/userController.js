@@ -40,9 +40,9 @@ const loginUser = (req, res) => {
             } else {
               // if passwords match (user is sucessfully authenticated) so we generate jwt
               const key = process.env.SECRET_KEY;
-              const token = jwt.sign({ id: user.userid, email: user.email, githubUserName: user.githubusername },
-                key, { expiresIn: '1h' });
-              res.status(200).json({ token, expiresIn: 3600 });
+              const token = jwt.sign({ id: user.userid, email: user.email, githubUserName: user.githubusername, githubAccessToken: user.githubaccesstoken },
+                key);
+              res.status(200).json({ token });
             }
           })
           .catch((err) => {
