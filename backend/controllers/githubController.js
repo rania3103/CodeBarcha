@@ -6,7 +6,7 @@ const getUserRepos = (req, res) => {
   const query = `
   query {
     viewer {
-      repositories(first: 50) {
+      repositories(first: 50, orderBy:{field: UPDATED_AT, direction:DESC}) {
         nodes {
           name
           url
