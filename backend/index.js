@@ -1,15 +1,27 @@
 const express = require('express');
-const app = express();
-require('dotenv').config();
-const port = process.env.PORT;
 const todoRoutes = require('./routes/todoRoutes');
 const userRoutes = require('./routes/userRoutes');
 const githubRoutes = require('./routes/githubRoutes');
-// Middleware
+const githubAuthRoutes = require('./routes/githubAuthRoutes');
+
+const passport = require('./config/passport-config');
+const session = require('express-session');
+
+const app = express();
+require('dotenv').config();
+
+const port = process.env.PORT;
+
+// Middlewares
 app.use(express.json());
+app.use(session({ secret: process.env.SECRET, resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Routes
 app.use('/api/todo', todoRoutes);
 app.use('/api/auth', userRoutes);
+app.use('/auth/github', githubAuthRoutes);
 app.use('/api/github', githubRoutes);
 
 app.listen(port, () => {
