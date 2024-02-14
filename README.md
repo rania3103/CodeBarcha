@@ -52,30 +52,33 @@
 To get a local copy up and running, follow these steps.
 ### Prerequisites
 
-In order to run this project you need:
-```sh
- npm run start
-```
+In order to run this project, you need:
+- Node.js
+- npm
+- PostgreSQL
+
 ### Setup
 
-Clone this repository to your desired folder:
-```sh
-  cd my-folder
-  git clone git@github.com:rania3103/CodeBarcha.git
-```
-### Install
+1. Clone this repository to your desired folder:
+    ```sh
+    cd my-folder
+    git clone git@github.com:rania3103/CodeBarcha.git
+    ```
 
-Install this project with:
-```sh
-  cd my-project
-  gem install
-```
-### Usage
+2. Navigate to the project directory:
+    ```sh
+    cd CodeBarcha
+    ```
 
-To run the project, execute the following command:
-```sh
-  npm run start
-```
+3. Install dependencies:
+    ```sh
+    npm install
+    ```
+
+4. Run the project:
+    ```sh
+    npm run start
+    ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- AUTHORS -->
 
