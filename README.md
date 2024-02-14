@@ -35,9 +35,9 @@
 <!-- Features -->
 
 ### Key Features <a name="key-features"></a>
-- **[key_feature_1]**
-- **[key_feature_2]**
-- **[key_feature_3]**
+- **GitHub integration:** View, create, and search repositories on GitHub.
+- **Code Editor:** An integrated code editor with support for git and many programming languages.
+- **Task Management:** View, create, update, and delete tasks.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- LIVE DEMO -->
 
@@ -89,10 +89,8 @@ In order to run this project, you need:
 
 ## 🔭 Future Features
 
-> Describe 1 - 3 features you will add to the project.
-- [ ] **[new_feature_1]**
-- [ ] **[new_feature_2]**
-- [ ] **[new_feature_3]**
+- [ ] **Chat App:** Integrate a real-time chat application for enhanced collaboration.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- CONTRIBUTING -->
 
