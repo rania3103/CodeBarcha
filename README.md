@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
 <div align="center">
   <!-- You are encouraged to replace this logo with your own! Otherwise you can also remove it. -->
-  <img src="./img/try.png" alt="logo" width="140"  height="auto" />
+  <img src="./img/try.png" alt="logo" width="500"  height="auto" />
   <br/>
 </div>
 
