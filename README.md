@@ -8,7 +8,7 @@
 <!-- PROJECT DESCRIPTION -->
 # 📖 CodeBarcha
 
-> **CodeBarcha** is a unified workspace to Streamline coding workflows, collaboration, and repository management.
+> **CodeBarcha** is a comprehensive workspace designed to enhance coding workflows and manage repositories..
 > 
 ## 🛠 Built With
 
