@@ -6,7 +6,7 @@ const githubAuthRoutes = require('./routes/githubAuthRoutes');
 const commandsRoutes = require('./routes/commandsRoutes');
 const passport = require('./config/passport-config');
 const session = require('express-session');
-
+const cors = require('cors');
 const app = express();
 require('dotenv').config();
 
@@ -14,6 +14,7 @@ const port = process.env.PORT;
 
 // Middlewares
 app.use(express.json());
+app.use(cors());
 app.use(session({ secret: process.env.SECRET, resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
