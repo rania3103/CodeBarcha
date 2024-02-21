@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <SideBar />
-        <div className="pl-96 pt-20">
+        <div className="pl-48">
           <Routes>
             <Route path="/home" element={<Home />} />
             <Route path="/repositories" element={<Repositories />} />
