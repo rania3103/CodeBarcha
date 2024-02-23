@@ -13,7 +13,7 @@ function CodeEditor() {
         {autoClosingBrackets:true}
       }
     />
-      <div className=''>
+      <div>
         <TerminalComponent/>
       </div>
     </div>
