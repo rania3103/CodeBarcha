@@ -10,7 +10,7 @@ function CodeEditor() {
         defaultValue='console.log("hello world");'
         options={{ autoClosingBrackets: true }}
       />
-      <div className="bg-red-700 w-full">
+      <div className=" w-full">
         <TerminalComponent />
       </div>
     </div>
