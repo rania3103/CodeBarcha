@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 
-function SignIn({ onLogin }) {
+function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -15,7 +15,6 @@ function SignIn({ onLogin }) {
       });
       const token = res.data.token;
       localStorage.setItem("authToken", token);
-      // onLogin();
       navigate("/home");
     } catch (error) {
       console.error(error);
