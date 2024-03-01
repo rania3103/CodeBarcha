@@ -1,7 +1,5 @@
 function Home() {
-  return (
-    <div>Home</div>
-  )
+  return <div className="text-white">Homedezkjnf;jk:nkjhj</div>;
 }
 
-export default Home
+export default Home;
