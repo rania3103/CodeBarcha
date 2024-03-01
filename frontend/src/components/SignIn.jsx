@@ -68,7 +68,7 @@ function SignIn() {
           Login
         </button>
         <p className="text-sm font-medium text-gray-600 mt-6 ml-16">
-          Don't have an account?{" "}
+          Don't have an account?
           <Link
             to="/signup"
             className="font-bold ml-4 text-indigo-500 hover:text-indigo-700"
