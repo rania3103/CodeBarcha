@@ -3,8 +3,6 @@ import Repositories from "./components/Repositories";
 import TaskManagement from "./components/TaskManagement";
 import CodeEditor from "./components/CodeEditor";
 import Home from "./components/Home";
-// import NavBar from "./components/NavBar";
-// import SideBar from "./components/SideBar";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import LogOut from "./components/LogOut";
