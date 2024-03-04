@@ -15,9 +15,11 @@ const createTask = (req, res) => {
 };
 // get all tasks
 const getTasks = (req, res) => {
-  db.query('select description, dueDate from task')
+  const id = req.user.id;
+  db.query('select description, duedate, taskid from task where userId = $1', [id])
     .then(result => {
-      res.status(200).json(result.rows);
+      const tasks = result.rows.map(task => ({ description: task.description, dueDate: task.duedate, taskId: task.taskid }));
+      res.status(200).json(tasks);
     })
     .catch(error => {
       res.status(400).json({ error: 'Failed to get tasks' });
@@ -59,8 +61,9 @@ const updateTask = async (req, res) => {
 // delete task
 const deleteTask = (req, res) => {
   const id = req.params.id;
+  console.log(id);
   db.query('delete from task where taskId = $1', [id])
-    .then(res.status(200).json({ message: 'task deleted sucessefully' }))
+    .then(() => { res.status(200).json({ message: 'task deleted sucessefully' }); })
     .catch(error => {
       res.status(400).json({ error: 'Failed to delete task' });
       console.error(error);
