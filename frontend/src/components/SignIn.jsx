@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-
 function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -57,7 +56,7 @@ function SignIn() {
           />
         </div>
         {error && (
-          <p className="text-red-500 text-sm mb-4 font-semibold ml-2">
+          <p className="text-red-400 text-sm mb-4 font-semibold ml-2 bg-red-200 py-2 rounded-md text-center">
             {error}
           </p>
         )}
