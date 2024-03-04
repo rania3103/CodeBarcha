@@ -61,7 +61,6 @@ const updateTask = async (req, res) => {
 // delete task
 const deleteTask = (req, res) => {
   const id = req.params.id;
-  console.log(id);
   db.query('delete from task where taskId = $1', [id])
     .then(() => { res.status(200).json({ message: 'task deleted sucessefully' }); })
     .catch(error => {
