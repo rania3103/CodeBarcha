@@ -72,10 +72,12 @@ const deleteTask = (req, res) => {
 const getImportantTasks = (req, res) => {
   const thisWeekStartDate = new Date();
   const thisWeekEndDate = new Date();
+  const id = req.user.id;
   thisWeekEndDate.setDate(thisWeekEndDate.getDate() + 7);
-  db.query('select description, dueDate from task where dueDate between $1 and $2', [thisWeekStartDate, thisWeekEndDate])
+  db.query('select description, dueDate from task where dueDate between $1 and $2 and userId = $3', [thisWeekStartDate, thisWeekEndDate, id])
     .then(result => {
-      res.status(200).json(result.rows);
+      const tasks = result.rows.map(task => ({ description: task.description, dueDate: task.duedate, taskId: task.taskid }));
+      res.status(200).json(tasks);
     })
     .catch(error => {
       res.status(400).json({ error: 'Failed to get tasks' });
