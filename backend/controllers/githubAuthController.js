@@ -3,8 +3,8 @@ const passport = require('../config/passport-config');
 const OAuth = passport.authenticate('github', { scope: ['user', 'repo'] });
 
 const handleCallback = (req, res) => {
-  res.redirect('api/github/repos');
+  res.redirect('/repositories');
 };
-const OAuthCallback = passport.authenticate('github', { failureRedirect: '/' }, handleCallback);
+const OAuthCallback = passport.authenticate('github', { failureRedirect: '/' });
 
-module.exports = { OAuth, OAuthCallback };
+module.exports = { OAuth, OAuthCallback, handleCallback };
