@@ -11,6 +11,7 @@ const getUserRepos = (req, res) => {
           name
           url
           isPrivate
+          description
         }
       }
     }
@@ -31,7 +32,8 @@ const getUserRepos = (req, res) => {
         name: repo.name,
         repoUrl: repo.url,
         cloneUrl: `${repo.url}.git`,
-        visibility: repo.isPrivate ? 'private' : 'public'
+        visibility: repo.isPrivate ? 'Private' : 'Public',
+        description: repo.description
       }));
       res.status(200).json(reposDetails);
     })
@@ -64,33 +66,4 @@ const createRepo = (req, res) => {
     });
 };
 
-// search any repo
-const searchRepo = (req, res) => {
-  const githubAccessToken = req.user.githubAccessToken;
-  const keyword = req.params.keyword;
-  // encode the keyword so if there is any special character it will be encoded to use it in the url (space %20)
-  axios.get(`https://api.github.com/search/repositories?q=${encodeURIComponent(keyword)}`,
-    {
-      headers: {
-        Authorization: `Bearer ${githubAccessToken}`,
-        'User-Agent': 'CodeBarcha',
-        'Content-Type': 'application/json'
-      }
-    })
-    .then((resp) => {
-      const repos = resp.data.items;
-      const reposDetails = repos.map((repo) => ({
-        name: repo.name,
-        repoUrl: repo.url,
-        cloneUrl: `${repo.url}.git`,
-        visibility: repo.isPrivate ? 'private' : 'public',
-        owner: repo.owner.login
-      }));
-      res.status(200).json(reposDetails);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).json({ error: 'Failed to fetch user repos from github api' });
-    });
-};
-module.exports = { getUserRepos, createRepo, searchRepo };
+module.exports = { getUserRepos, createRepo };

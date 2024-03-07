@@ -6,6 +6,5 @@ router.use(verifyToken);
 
 router.get('/repos', githubController.getUserRepos);
 router.post('/repos', githubController.createRepo);
-router.get('/repos/search/:keyword', githubController.searchRepo);
 
 module.exports = router;
