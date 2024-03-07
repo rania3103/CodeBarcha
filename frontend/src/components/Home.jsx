@@ -16,7 +16,7 @@ function Home() {
   const getQuote = async () => {
     try {
       let res = await axios.get(
-        "https://api.quotable.io/random?tags=happiness"
+        "https://api.quotable.io/random?tags=happiness|technology"
       );
       if (res.data.content.length < 90){
         setQuote(res.data.content);
@@ -48,7 +48,8 @@ function Home() {
   return (
     <div className="mx-auto">
       <div className="text-center">
-        <p className="text-indigo-200 bg-slate-800 py-4 rounded-md text-2xl mt-12 font-semibold mx-auto">{quote}</p>
+        <h1 className="mt-4 font-extrabold text-indigo-500 text-3xl">Quote of the day:</h1>
+        <p className="text-indigo-200 bg-slate-800 py-4 rounded-md text-2xl mt-8 font-semibold mx-auto">{quote}</p>
       </div>
       <div className="flex space-x-24 mt-12">
         <div className="w-96">
