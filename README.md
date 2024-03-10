@@ -35,7 +35,7 @@
 <!-- Features -->
 
 ### Key Features <a name="key-features"></a>
-- **GitHub integration:** View, create, and search repositories on GitHub.
+- **GitHub integration:** View your repositories, create a repository on GitHub.
 - **Code Editor:** An integrated code editor with support for git and many programming languages.
 - **Task Management:** View, create, update, and delete tasks.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -100,9 +100,3 @@ Contributions, issues, and feature requests are welcome!
 Feel free to check the [issues page](../../issues/).
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- LICENSE -->
-
-## 📝 License <a name="license"></a>
-
-This project is [MIT](./LICENSE) licensed.
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
