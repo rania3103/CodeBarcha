@@ -6,7 +6,7 @@
 </div>
 
 <!-- PROJECT DESCRIPTION -->
-# 📖 CodeBarcha
+# 💻CodeBarcha
 
 > **CodeBarcha** is a comprehensive workspace designed to enhance coding workflows and manage repositories..
 > 
@@ -32,6 +32,13 @@
     <li><a href="https://www.postgresql.org/">PostgreSQL</a></li>
   </ul>
 </details>
+
+### 🔧Architecture🔨
+
+<img src ="img/architecture.png">
+<img src ="img/db.png">
+
+
 <!-- Features -->
 
 ### Key Features <a name="key-features"></a>
@@ -43,7 +50,12 @@
 
 ## 🚀 Live Demo
 
-<img src ="i">
+<img src ="img/signin.png">
+<img src ="img/home.png">
+<img src ="img/todo.png">
+<img src ="img/repos.png">
+<img src ="img/codeditor.png">
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- GETTING STARTED -->
 
