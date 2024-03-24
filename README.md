@@ -12,7 +12,7 @@
 > 
 ## 🛠 Built With
 
-### Tech Stack
+### 📑Tech Stack
 
 <details>
   <summary>Client</summary>
@@ -36,12 +36,12 @@
 ### 🔧Architecture🔨
 
 <img src ="img/architecture.png">
-<img src ="img/db.png">
+<img src="img/db.png" style="height:800px, width:1776px;">
 
 
 <!-- Features -->
 
-### Key Features <a name="key-features"></a>
+### 🔎Key Features <a name="key-features"></a>
 - **GitHub integration:** View your repositories, create a repository on GitHub.
 - **Code Editor:** An integrated IDE to code, execute code, support git and many programming languages and other features.
 - **Task Management:** View, create, update, and delete tasks.
