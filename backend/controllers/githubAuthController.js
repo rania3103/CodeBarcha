@@ -1,10 +1,7 @@
-const passport = require('../config/passport-config');
-
-const OAuth = passport.authenticate('github', { scope: ['user', 'repo'] });
-
-const handleCallback = (req, res) => {
-  res.redirect('/repositories');
+const getGithubInfo = (req, res) => {
+  const clientID = process.env.GITHUB_CLIENT_ID;
+  const githubUserName = req.user.username;
+  const fullUrl = `https://github.com/login/oauth/authorize?client_id=${clientID}&login=${githubUserName}`;
+  res.redirect(fullUrl);
 };
-const OAuthCallback = passport.authenticate('github', { failureRedirect: '/' });
-
-module.exports = { OAuth, OAuthCallback, handleCallback };
+module.exports = { getGithubInfo };

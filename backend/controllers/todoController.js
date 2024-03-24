@@ -31,27 +31,19 @@ const updateTask = async (req, res) => {
   const { description, dueDate } = req.body;
   const id = req.params.id;
   let updatedTask = null;
+  let result;
   try {
-    if (description) {
-      const result = await db.query('update task set description = $1 where taskId = $2  returning *', [description, id]);
-      if (result.rowCount > 0) {
-        updatedTask = result.rows[0];
-      } else {
-        res.status(404).json({ error: 'task not found or not updated' });
-        return;
-      }
+    if (description !== undefined) {
+      result = await db.query('update task set description = $1 where taskId = $2  returning *', [description, id]);
     }
-    if (dueDate) {
-      const result = await db.query('update task set dueDate = $1 where taskId = $2  returning *', [dueDate, id]);
-      if (result.rowCount > 0) {
-        updatedTask = result.rows[0];
-      } else {
-        res.status(404).json({ error: 'task not found or not updated' });
-        return;
-      }
+    if (dueDate !== undefined) {
+      result = await db.query('update task set dueDate = $1 where taskId = $2  returning *', [dueDate, id]);
     }
-    if (updatedTask) {
+    if (result.rowCount > 0) {
+      updatedTask = result.rows[0];
       res.status(200).json(updatedTask);
+    } else {
+      res.status(404).json({ error: 'task not found or not updated' });
     }
   } catch (error) {
     res.status(400).json({ error: 'Failed to update task' });
@@ -70,10 +62,13 @@ const deleteTask = (req, res) => {
 };
 // get important tasks
 const getImportantTasks = (req, res) => {
-  const thisWeekStartDate = new Date();
-  const thisWeekEndDate = new Date();
+  const today = new Date();
+  const thisWeekStartDate = new Date(today);
+  const dayOfWeek = today.getDay();
+  thisWeekStartDate.setDate(today.getDate() - dayOfWeek + (dayOfWeek === 0 ? -7 : 0));
+  const thisWeekEndDate = new Date(thisWeekStartDate);
+  thisWeekEndDate.setDate(thisWeekEndDate.getDate() + 6);
   const id = req.user.id;
-  thisWeekEndDate.setDate(thisWeekEndDate.getDate() + 7);
   db.query('select description, dueDate from task where dueDate between $1 and $2 and userId = $3', [thisWeekStartDate, thisWeekEndDate, id])
     .then(result => {
       const tasks = result.rows.map(task => ({ description: task.description, dueDate: task.duedate, taskId: task.taskid }));

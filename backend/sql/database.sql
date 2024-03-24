@@ -11,3 +11,10 @@ CREATE TABLE task(
     duedate DATE,
     userid INTEGER REFERENCES app_user(userId)
 );
+
+CREATE TABLE workspace(
+    workspaceid SERIAL PRIMARY KEY,
+    workspacename varchar(100),
+    workspaceurl varchar(120),
+    userid INTEGER REFERENCES app_user(userId)
+);

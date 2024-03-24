@@ -3,6 +3,7 @@ const axios = require('axios');
 // get user repos(private/public with link to clone repo)
 const getUserRepos = (req, res) => {
   const githubAccessToken = req.user.githubAccessToken;
+  const githubUserName = req.user.githubUserName;
   const query = `
   query {
     viewer {
@@ -29,6 +30,7 @@ const getUserRepos = (req, res) => {
     .then((resp) => {
       const repos = resp.data.data.viewer.repositories.nodes;
       const reposDetails = repos.map((repo) => ({
+        userName: githubUserName,
         name: repo.name,
         repoUrl: repo.url,
         cloneUrl: `${repo.url}.git`,
@@ -48,7 +50,10 @@ const createRepo = (req, res) => {
   const githubAccessToken = req.user.githubAccessToken;
   const data = {
     name: req.body.name,
-    private: req.body.private
+    private: req.body.private,
+    auto_init: true,
+    readme_template: 'default'
+
   };
   axios.post('https://api.github.com/user/repos', data,
     {
@@ -65,5 +70,4 @@ const createRepo = (req, res) => {
       res.status(500).json({ error: 'failed to create repository on github' });
     });
 };
-
 module.exports = { getUserRepos, createRepo };
