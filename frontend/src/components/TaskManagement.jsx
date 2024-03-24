@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { format } from "date-fns";
+import {format, addDays } from "date-fns";
 
 function TaskManagement() {
   const [description, setDescription] = useState("");
@@ -46,6 +46,18 @@ function TaskManagement() {
       setTasks((prevTasks) => prevTasks.filter((task) => task.taskId !== id));
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  const handleUpdateTask = async (id, description, dueDate) => {
+    try {
+      await axios.put(`http://localhost:3000/api/todo/${id}`, {description, dueDate}, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      handleGetTasks();
+    } catch (error) {
+      console.error(error);
+
     }
   };
   useEffect(() => {
@@ -103,22 +115,17 @@ function TaskManagement() {
                   className="bg-slate-100 hover:bg-slate-200"
                 >
                   <td>
-                    <Typography
-                      variant="medium"
-                      className="font-semibold py-2 text-gray-700"
-                    >
-                      {task.description}
-                    </Typography>
+                    <input type="text"
+                      className="font-semibold py-2 text-gray-700 bg-slate-100" value= {task.description}
+                      onChange={(e)=> handleUpdateTask(task.taskId, e.target.value, undefined)}
+                    />
                   </td>
                   <td>
-                    <Typography
-                      variant="medium"
-                      className="font-semibold py-2 text-gray-700"
-                    >
-                      {format(new Date(task.dueDate), "yyyy/MM/dd")}
-                    </Typography>
+                  <DatePicker selected={format(addDays(new Date(task.dueDate), 1), "yyyy/MM/dd")}
+                  className="py-1 px-3 bg-slate-100 rounded outline-0"
+                  dateFormat="yyyy/MM/dd" onChange={(date)=> handleUpdateTask(task.taskId, undefined, date)}/>
                   </td>
-                  <td  className="px-auto">
+                  <td  className="px-auto space-x-2">
                     <Button
                       className="bg-red-800 hover:bg-red-600 rounded-md h-8 py-1"
                       onClick={() => handleDeleteTask(task.taskId)}

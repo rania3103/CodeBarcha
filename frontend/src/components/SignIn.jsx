@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState} from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 function SignIn() {
@@ -6,6 +6,7 @@ function SignIn() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
   const handleLogin = async () => {
     try {
       const res = await axios.post("http://localhost:3000/api/auth/login", {
@@ -13,11 +14,12 @@ function SignIn() {
         password,
       });
       const token = res.data.token;
+      console.log("Received Token:", token);
       localStorage.setItem("authToken", token);
       navigate("/home");
     } catch (error) {
       console.error(error);
-      setError("Invalid email or password");
+      setError(error.response.data.message);
     }
   };
   return (
@@ -35,7 +37,7 @@ function SignIn() {
             Email
           </label>
           <input
-            type="email"
+            type="email" required
             id="email"
             className="mt-1 p-2 w-full border rounded outline-blue-500 "
             onChange={(e) => setEmail(e.target.value)}
@@ -49,7 +51,7 @@ function SignIn() {
             Password
           </label>
           <input
-            type="password"
+            type="password" required
             id="password"
             className="mt-1 p-2 w-full border rounded outline-blue-500"
             onChange={(e) => setPassword(e.target.value)}

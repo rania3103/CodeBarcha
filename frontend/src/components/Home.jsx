@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Card, Typography} from "@material-tailwind/react";
-import { format } from "date-fns";
+import { format, addDays } from "date-fns";
 import { FaStackOverflow, FaLinkedin } from "react-icons/fa";
 import { FaMedium } from "react-icons/fa6";
 import { BsSlack } from "react-icons/bs";
@@ -53,8 +53,8 @@ function Home() {
       </div>
       <div className="flex space-x-24 mt-12">
         <div className="w-96">
-            <Card className="bg-slate-200 rounded-md h-fit">
-              <table className="table-auto text-left ">
+            <Card className="bg-slate-200 rounded-lg h-96 ">
+              <table className="table-auto text-left">
                 <thead>
                   <tr>
                     <th className="py-2 border-b-gray-300 border-b-2">
@@ -69,7 +69,7 @@ function Home() {
                     </th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody >
                 {importantTasks.map((task) => (
                 <tr
                   key={task.taskId}
@@ -88,7 +88,7 @@ function Home() {
                       variant="medium"
                       className="font-semibold py-2 text-red-500 text-center"
                     >
-                      {format(new Date(task.dueDate), "yyyy/MM/dd")}
+                      {format(addDays(new Date(task.dueDate), 1), "yyyy/MM/dd")}
                     </Typography>
                   </td>
                   </tr> ))}

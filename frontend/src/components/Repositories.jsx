@@ -10,7 +10,9 @@ import {
   PopoverHandler,
   PopoverContent,
 } from "@material-tailwind/react";
+import { FaGithub } from "react-icons/fa6";
 import axios from "axios";
+
 function Repositories() {
   const [repoName, setRepoName] = useState("");
   const [repos, setRepos] = useState([]);
@@ -19,15 +21,21 @@ function Repositories() {
 
   const githubOAuth = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/auth/github");
-      window.location.href = res.data.oauthUrl;
+      const popup = window.open(
+        "http://localhost:3000/auth/github",
+        "_blank",
+        "width=600, height=600"
+      );
+      window.addEventListener("", async () => {
+        if (popup && !popup.closed) {
+          popup.close();
+        }
+        await getUserRepos();
+      });
     } catch (error) {
       console.error(error);
     }
   };
-  useEffect(() => {
-    githubOAuth();
-  }, []);
   const getUserRepos = async () => {
     try {
       const res = await axios.get("http://localhost:3000/api/github/repos", {
@@ -53,13 +61,24 @@ function Repositories() {
       console.error(error);
     }
   };
+
   return (
     <div className="w-full mx-auto mt-11">
-      <div className="text-center flex ml-44 mb-8">
+      <Button
+        onClick={githubOAuth}
+        size="lg"
+        variant="outlined"
+        className="flex items-center gap-3 bg-indigo-300 text-gray-700 mx-auto mb-10 py-2 px-2"
+      >
+        <FaGithub />
+        please click on this button to Continue with Github if you don't see
+        your repositories
+      </Button>
+      <div className="text-center flex ml-44 mb-8 text-white">
         <input
           type="text"
           placeholder="enter a name for the repository you want to create"
-          className="mr-3 ml-5 py-1 px-3 bg-slate-100 rounded outline-0 w-96"
+          className="mr-3 ml-5 py-1 px-3 bg-slate-100 rounded outline-0 w-96 text-gray-800"
           value={repoName}
           onChange={(e) => setRepoName(e.target.value)}
         />
