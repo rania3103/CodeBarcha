@@ -36,7 +36,7 @@
 
 ### Key Features <a name="key-features"></a>
 - **GitHub integration:** View your repositories, create a repository on GitHub.
-- **Code Editor:** An integrated code editor with support for git and many programming languages.
+- **Code Editor:** An integrated IDE to code, execute code, support git and many programming languages and other features.
 - **Task Management:** View, create, update, and delete tasks.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- LIVE DEMO -->
@@ -67,15 +67,30 @@ In order to run this project, you need:
     ```sh
     cd CodeBarcha
     ```
-
-3. Install dependencies:
+3. Navigate to the backend directory:
+    ```sh
+    cd backend
+    ```
+4. Install dependencies:
+    ```sh
+    npm install
+    ```
+5. Run the backend:
+    ```sh
+    npm run start
+    ```
+6. Navigate to the frontend directory:
+    ```sh
+    cd frontend
+    ```
+7. Install dependencies:
     ```sh
     npm install
     ```
 
-4. Run the project:
+8. Run the frontend:
     ```sh
-    npm run start
+    npm run dev
     ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- AUTHORS -->
