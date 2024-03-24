@@ -54,6 +54,7 @@ In order to run this project, you need:
 - Node.js
 - npm
 - PostgreSQL
+- Docker
 
 ### Setup
 
