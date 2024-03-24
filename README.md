@@ -35,7 +35,7 @@
 
 ### 🔧Architecture🔨
 
-<img src="img/db.png" height="600">
+<img src="img/db.png" height="400" >
 <img src ="img/architecture.png">
 
 <!-- Features -->
